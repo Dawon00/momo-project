@@ -1,13 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { ThemeProvider } from 'styled-components';
 import App from './App';
+import { GlobalStyle } from './globalStyle';
 import reportWebVitals from './reportWebVitals';
+
+const theme = {
+  pointColor: "#6A48F3",
+  pointBackColor: "#ECECEC",
+};
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme = {theme}>
+      <GlobalStyle/>
+      <App/>
+    </ThemeProvider>
   </React.StrictMode>
 );
 
