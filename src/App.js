@@ -18,7 +18,7 @@ function App() {
           <Route path = "/search" element = {<Search/>}/>
           <Route path = "/" element = {<Home/>}/>
         </Routes>
-      <Footer/>
+      
     </BrowserRouter>
     
   );

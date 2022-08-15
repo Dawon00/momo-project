@@ -45,7 +45,9 @@ export const GlobalStyle = createGlobalStyle`
         border-spacing: 0;
     }
     /* 이 위는 스타일에 방해되는 HTML 태그의 기본값들을 초기화해주는 CSS reset이라는 코드 */
-    
+    body, footer {
+        width: 844px; 
+    }
     html {
         background-color: rgb(236, 240, 241);
     }
@@ -53,8 +55,10 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0 auto;
         background-color: white;
         height: 100vh;
-        width: 844px; 
+        overflow-x: hidden ;
     }
+    body{-ms-overflow-style:none; }
+    body::-webkit-scrollbar { display:none; }
 
     
 `
