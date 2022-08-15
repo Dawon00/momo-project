@@ -6,11 +6,14 @@ import {FiBookmark, FiUser} from 'react-icons/fi'
 
 const Nav = styled.nav`
     position:fixed;
+    top:0;
     height: 65px;
     display: flex;
     padding:3px 0 3px 0;
     width: 844px;
     border-bottom:1px solid ${(props) => props.theme.pointBackColor};
+    z-index: 10;
+    background-color:white;
 `
 const Col = styled.div`
     display: flex;
@@ -91,10 +94,13 @@ function Header(){
     <>
         <Nav>
             <Col>
-                <Logo onClick={()=> {navigate(`/`)}}>
-                    <span>모현에서</span>
-                    <span>모먹지</span>
-                </Logo>
+                <Link to ="/home">
+                    <Logo>
+                        <span>모현에서</span>
+                        <span>모먹지</span>
+                    </Logo>
+                </Link>
+                
                 <Search
                 onSubmit= {handleSubmit(onValid)}
                 >

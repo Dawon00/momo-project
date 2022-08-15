@@ -1,13 +1,15 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState ,useEffect} from "react";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useMatch } from "react-router-dom";
 import styled from "styled-components";
+import Location from "../components/Home_components/Location";
+import Menu from "../components/Home_components/Menu";
 
 const Wrap = styled.div`
     padding-top: 80px;
     overflow:hidden;
     position: relative;
-    height: 890px;
+    height: 700px;
     width: 95%;
     margin: 0 auto;
 `
@@ -50,10 +52,15 @@ const Circle = styled(motion.div)`
     background-color: ${(props)=> props.num === props.index ? props.theme.pointColor : "#B6B6B6"} ;
     margin: 10px;
 `
-const Category = styled.div`
+const Tabs = styled.div`
+    position: absolute;
+    top: 400px;
+    display: flex ;
+`
+const Tab = styled.p`
+    font-weight: bold ;
 
 `
-
 
 const boxVariants = {
     hidden: {
@@ -74,16 +81,21 @@ function Home(){
 
     const toggleLeaving = () => setLeaving((prev) => !prev);
 
+    const locaMatch = useMatch("location");
+    const menuMatch = useMatch("menu");
+
     useEffect(()=> {
         const loop = setInterval(() => {
             setIndex(prev => prev === 2? 0 : prev + 1);
         },7000)
-        console.log(index)
         return () => {
             clearInterval(loop);
         };
-    },[index])
+    },[])
 
+    
+
+    
     return (
     <Wrap>
         <Slider>
@@ -110,6 +122,20 @@ function Home(){
                 <Circle num = {2} index = {index} />
             </Bar>
             </AnimatePresence>
+
+            <Tabs>
+                <Tab isActive={locaMatch !== null}>
+                    <Link to={"location"} style= {{paddingRight:"10px", borderRight:"solid 1.5px black"}}>위치별</Link>
+                </Tab>
+                <Tab isActive={menuMatch !== null}>
+                    <Link to={"menu"} style= {{paddingLeft:"10px", }}>메뉴별</Link>
+                </Tab>
+            </Tabs>
+
+            <Routes>
+                <Route path = "/location" element={<Location/>}/>
+                <Route path = "/menu" element={<Menu/>}/>
+            </Routes>
         </Slider>  
     </Wrap>
         

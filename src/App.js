@@ -1,6 +1,6 @@
 import {BrowserRouter ,Routes, Route} from 'react-router-dom'
-import Header from './components/Header'
-import Footer from './components/Footer'
+import Header from './components/Home_components/Header'
+import Footer from './components/Home_components/Footer'
 import Home from './page/Home';
 import Bookmark from './page/Bookmark';
 import Detail from './page/Detail'
@@ -11,13 +11,16 @@ function App() {
   return (
     <BrowserRouter>
       <Header/>
-        <Routes>
-          <Route path = "/bookmark" element = {<Bookmark/>}/>
-          <Route path = "/:id" element = {<Detail/>}/>
-          <Route path = "/profile" element = {<Profile/>} />
-          <Route path = "/search" element = {<Search/>}/>
-          <Route path = "/" element = {<Home/>}/>
-        </Routes>
+      <Footer/>
+      <Routes>
+        <Route path = "/bookmark" element = {<Bookmark/>}/>
+        <Route path = "/:id" element = {<Detail/>}/>
+        <Route path = "/profile" element = {<Profile/>} />
+        <Route path = "/search" element = {<Search/>}/>
+
+        <Route path = "/home" element = {<Home/>}/>
+        <Route path = "/home/*" element = {<Home/>}/>
+      </Routes>
       
     </BrowserRouter>
     

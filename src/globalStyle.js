@@ -59,6 +59,10 @@ export const GlobalStyle = createGlobalStyle`
     }
     body{-ms-overflow-style:none; }
     body::-webkit-scrollbar { display:none; }
+    a {
+        text-decoration:none;
+        color: black;
+    }
 
     
 `

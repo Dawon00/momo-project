@@ -4,6 +4,9 @@ const Foot = styled.footer`
     background-color: #140065;
     height: 160px;
     padding:20px 0 20px 0;
+    position: absolute;
+    bottom: 0;
+    background-color: #140065;
 `
 const Logo = styled.div`
     font-weight: bold ;
@@ -13,7 +16,7 @@ const Logo = styled.div`
     color:white;
     margin-left: 30px;
     span:last-child {
-        color: ${(props) => props.theme.pointBackColor};
+        color:  #BDADFF;
     }
 `
 const About = styled.div`
