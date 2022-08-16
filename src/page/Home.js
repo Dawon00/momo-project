@@ -81,8 +81,8 @@ function Home(){
 
     const toggleLeaving = () => setLeaving((prev) => !prev);
 
-    const locaMatch = useMatch("location");
-    const menuMatch = useMatch("menu");
+    const locaMatch = useMatch("home/location");
+    const menuMatch = useMatch("home/menu");
 
     useEffect(()=> {
         const loop = setInterval(() => {
@@ -92,8 +92,6 @@ function Home(){
             clearInterval(loop);
         };
     },[])
-
-    
 
     
     return (
@@ -125,10 +123,10 @@ function Home(){
 
             <Tabs>
                 <Tab isActive={locaMatch !== null}>
-                    <Link to={"location"} style= {{paddingRight:"10px", borderRight:"solid 1.5px black"}}>위치별</Link>
+                    <Link to={ menuMatch || locaMatch? "location":"home/location"} style= {{paddingRight:"10px", borderRight:"solid 1.5px black"}}>위치별</Link>
                 </Tab>
                 <Tab isActive={menuMatch !== null}>
-                    <Link to={"menu"} style= {{paddingLeft:"10px", }}>메뉴별</Link>
+                    <Link to={  menuMatch || locaMatch ? "menu":"home/menu"} style= {{paddingLeft:"10px", }}>메뉴별</Link>
                 </Tab>
             </Tabs>
 

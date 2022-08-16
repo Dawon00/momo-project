@@ -94,7 +94,7 @@ function Header(){
     <>
         <Nav>
             <Col>
-                <Link to ="/home">
+                <Link to ="/home/location">
                     <Logo>
                         <span>모현에서</span>
                         <span>모먹지</span>

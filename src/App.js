@@ -11,17 +11,16 @@ function App() {
   return (
     <BrowserRouter>
       <Header/>
-      <Footer/>
       <Routes>
         <Route path = "/bookmark" element = {<Bookmark/>}/>
         <Route path = "/:id" element = {<Detail/>}/>
         <Route path = "/profile" element = {<Profile/>} />
         <Route path = "/search" element = {<Search/>}/>
-
-        <Route path = "/home" element = {<Home/>}/>
+        
+        <Route path = "/" element = {<Home/>}/>
         <Route path = "/home/*" element = {<Home/>}/>
       </Routes>
-      
+      <Footer/>
     </BrowserRouter>
     
   );

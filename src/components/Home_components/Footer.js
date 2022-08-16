@@ -4,7 +4,7 @@ import {IoMdLink} from 'react-icons/io'
 const Foot = styled.footer`
     background-color: #140065;
     height: 160px;
-    padding: 10px 0 0 30px;
+    padding-top: 10px;
     padding-top:10px;
     position: absolute;
     bottom: 0;
@@ -16,6 +16,7 @@ const Col = styled.div`
     height: 100px;
     grid-template-columns: 1fr 4fr;
     margin-bottom:10px ;
+    margin-left:30px;
 `
 const Logo = styled.div`
     font-weight: bold ;
@@ -42,18 +43,25 @@ const TeamInfoItem = styled.div`
         }
     }
 `
-const GithubLink = styled.span`
+const GithubLink = styled.div`
     background-color: #D9D9D9 ;
-    color: #140065;
     font-size:40px ;
     height: 50px;
     width:50px;
-    align-items:center;
-    justify-content: center ;
     border-radius:50px ;
+    a {
+        display:flex;
+        color: #140065;
+        align-items:center;
+        justify-content: center ;
+        width: 50px ;
+        height:50px;
+    }
 `
 const CopyRight = styled.div`
     display:grid;
+    margin-left:30px;
+    color: #7C7C7C;
 `
 const Title = styled.span`
     font-weight: bold ;
@@ -86,7 +94,11 @@ function Footer(){
                     <TeamInfoItem>
                         <Title>Github</Title>
                         <div>
-                            <GithubLink><IoMdLink/></GithubLink>
+                            <GithubLink>
+                                <a href="https://github.com/Dawon00/momo-project">
+                                <IoMdLink/>
+                                </a>
+                            </GithubLink>
                         </div>
                     </TeamInfoItem>
                 </TeamInfoWrap>
