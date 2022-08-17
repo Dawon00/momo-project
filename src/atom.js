@@ -1,6 +1,11 @@
 import {atom} from 'recoil';
 
-export const categoryState = atom({
-    key: "categoryState",
+export const locaCateState = atom({
+    key: "locaCateState",
     default: ""
 });
+
+export const menuCateState = atom({
+    key: "menuCateState",
+    default: ""
+})

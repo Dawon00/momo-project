@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { Link, Route, Routes, useMatch } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import styled, { css } from "styled-components";
-import { categoryState } from "../../atom";
+import { categoryState, menuCateState } from "../../atom";
 import ByCategory from "./ByCategory";
 
 const Categories = styled.ul`
@@ -69,20 +70,23 @@ const categories = [
     },
 ]
 function Menu(){
-    const [category, setCategory] = useRecoilState(categoryState);
+    const [category, setCategory] = useState("");
+    const [menuCategory, setMenuCategory] = useRecoilState(menuCateState);
     
-    const onClick = (cate) => {
-        setCategory(cate);
+    const onClick = (name, text) => {
+        setCategory(text);
+        setMenuCategory(name);
     }
-    const cateMatch = useMatch(`home/location/${category}`)
+
+    const cateMatch = useMatch(`home/location/${menuCategory}`)
     
 
     return (
         <>
             <Categories>
                 {categories.map(c => (
-                    <Category isActive = {cateMatch !== null} active = {category === c.name}> 
-                     <Link to = {`${c.name}`} onClick = {()=>onClick(c.name)} >
+                    <Category isActive = {cateMatch !== null} active = {menuCategory === c.name}> 
+                     <Link to = {`${c.name}`} onClick = {()=>onClick(c.name, c.text)} >
                         <span>{c.emogi}</span>
                         <span>{c.text}</span>
                          </Link>
@@ -91,7 +95,7 @@ function Menu(){
             </Categories>
 
             <Routes>
-                <Route path = "/:category" element={<ByCategory category={category}/>}/>
+                <Route path = "/:menuCategory" element={<ByCategory category={category}/>}/>
             </Routes>
         </>
     )

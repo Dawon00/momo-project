@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {useForm} from 'react-hook-form';
 import { useState } from 'react';
 import {FiBookmark, FiUser} from 'react-icons/fi'
-import { categoryState } from '../../atom';
+import {locaCateState, menuCateState } from '../../atom';
 import { useSetRecoilState } from 'recoil';
 
 const Nav = styled.nav`
@@ -93,9 +93,11 @@ function Header(){
         navigate(`/search?keyword=${data.keyword}`)
     }
 
-    const setCategory = useSetRecoilState(categoryState);
+    const setLocaCategory = useSetRecoilState(locaCateState);
+    const setMenuCategory = useSetRecoilState(menuCateState);
     const onClick = () => {
-        setCategory("");
+        setLocaCategory("");
+        setMenuCategory("");
     }
  return (
     <>

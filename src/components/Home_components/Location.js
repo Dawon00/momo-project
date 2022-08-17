@@ -1,7 +1,8 @@
+import { useEffect, useState } from "react";
 import { Routes, Route, Link, useMatch } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import styled,{css} from "styled-components";
-import { categoryState } from "../../atom";
+import { categoryState, locaCateState } from "../../atom";
 import ByCategory from "./ByCategory";
 
 const Categories = styled.ul`
@@ -65,20 +66,21 @@ const categories = [
 
 
 function Location(){
-    const [category, setCategory] = useRecoilState(categoryState);
+    const [category, setCategory] = useState("");
+    const [locaCategory, setLocaCategory] = useRecoilState(locaCateState);
     
-    const onClick = (cate) => {
-        setCategory(cate);
+    const onClick = (name, text) => {
+        setCategory(text);
+        setLocaCategory(name);
     }
-    const cateMatch = useMatch(`home/location/${category}`)
-    
+    const cateMatch = useMatch(`home/location/${locaCategory}`);
 
     return (
         <>
             <Categories>
                 {categories.map(c => (
-                    <Category isActive = {cateMatch !== null} active = {category === c.name}> 
-                     <Link to = {`${c.name}`} onClick = {()=>onClick(c.name)} >
+                    <Category isActive = {cateMatch !== null} active = {locaCategory === c.name}> 
+                     <Link to = {`${c.name}`} onClick = {()=>onClick(c.name, c.text)} >
                         <span>{c.emogi}</span>
                         <span>{c.text}</span>
                          </Link>
@@ -87,7 +89,7 @@ function Location(){
             </Categories>
 
             <Routes>
-                <Route path = "/:category" element={<ByCategory category={category}/>}/>
+                <Route path = "/:locaCategory" element={<ByCategory category={category}/>}/>
             </Routes>
         </>
     )

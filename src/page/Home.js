@@ -3,7 +3,7 @@ import { useState ,useEffect} from "react";
 import { Link, Route, Routes, useMatch } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { categoryState } from "../atom";
+import { categoryState, locaCateState, menuCateState } from "../atom";
 import Location from "../components/Home_components/Location";
 import Menu from "../components/Home_components/Menu";
 
@@ -86,21 +86,24 @@ function Home(){
     const locaMatch = useMatch("home/location");
     const menuMatch = useMatch("home/menu");
 
-    const [category, setCategory] = useRecoilState(categoryState);
-    const locaCateMatch = useMatch(`home/location/${category}` )
-    const menuCateMatch = useMatch(`home/menu/${category}`)
+    const [locaCategory, setLocaCategory] = useRecoilState(locaCateState);
+    const [menuCategory, setmenuCategory] = useRecoilState(menuCateState);
+    const locaCateMatch = useMatch(`home/location/${locaCategory}` )
+    const menuCateMatch = useMatch(`home/menu/${menuCategory}`)
 
     useEffect(()=> {
         const loop = setInterval(() => {
             setIndex(prev => prev === 2? 0 : prev + 1);
         },7000)
+        console.log(locaCategory);
         return () => {
             clearInterval(loop);
         };
-    },[])
+    },[locaCategory])
 
     const onClick = () => {
-        setCategory("");
+        setLocaCategory("");
+        setmenuCategory("");
     }
 
     return (
