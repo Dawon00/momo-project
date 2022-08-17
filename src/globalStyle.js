@@ -66,6 +66,11 @@ export const GlobalStyle = createGlobalStyle`
     ::-webkit-scrollbar {
     display: none;
     }
+    button {
+        outline:none;
+        border:none;
+        background:none;
+    }
 
     
 `

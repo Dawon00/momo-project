@@ -3,9 +3,10 @@ import { useState ,useEffect} from "react";
 import { Link, Route, Routes, useMatch } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { categoryState, locaCateState, menuCateState } from "../atom";
+import { locaCateState, menuCateState } from "../atom";
 import Location from "../components/Home_components/Location";
 import Menu from "../components/Home_components/Menu";
+import {RiArrowRightSLine, RiArrowLeftSLine} from "react-icons/ri"
 
 const Wrap = styled.div`
     overflow-x:hidden;
@@ -35,7 +36,7 @@ const Row = styled(motion.div)`
 `
 const Box = styled(motion.div)`
     height:200px;
-    width:380px;
+    width:350px;
     background-color: #F0EDFF;
     border-radius: 20px ;
     margin:10px;
@@ -55,6 +56,19 @@ const Circle = styled(motion.div)`
     background-color: ${(props)=> props.num === props.index ? props.theme.pointColor : "#B6B6B6"} ;
     margin: 10px;
 `
+const Prev = styled(motion.button)`
+    font-size:30px;
+    position: absolute ;
+    height:200px;
+    line-height:200px;
+    top:50;
+    color:${(props)=> props.theme.pointColor} ;
+
+`
+const Next = styled(Prev)`
+    right:0;
+`
+
 const Tabs = styled.div`
     position: absolute;
     top: 350px;
@@ -66,21 +80,23 @@ const Tab = styled.p`
 `
 
 const boxVariants = {
-    hidden: {
-        x: 844,
-    },
+    hidden: (back)=> ({
+      x: back ? -844 :  844,
+    }),
     visible: {
-        x: 0,
+      x: 0,
     },
-    exit: {
-        x: -844,
-    },
+    exit:(back)=> ( {
+      x: back ? 844 :  -844,
+    }),
   };
 
 const offset = 2;
 function Home(){
     const [index, setIndex] = useState(0);
     const [leaving, setLeaving] = useState(false);
+
+    const [back, setBack] = useState(false);
 
     const toggleLeaving = () => setLeaving((prev) => !prev);
 
@@ -92,31 +108,42 @@ function Home(){
     const locaCateMatch = useMatch(`home/location/${locaCategory}` )
     const menuCateMatch = useMatch(`home/menu/${menuCategory}`)
 
-    useEffect(()=> {
-        const loop = setInterval(() => {
-            setIndex(prev => prev === 2? 0 : prev + 1);
-        },7000)
-        return () => {
-            clearInterval(loop);
-        };
-    },[])
-
+   
     const onClick = () => {
         setLocaCategory("");
         setmenuCategory("");
     }
 
+
+    const increaseIndex = () => {
+        if (leaving) return;
+        toggleLeaving();
+        setBack(false);
+        setIndex((prev) => (prev === 2 ? 0 : prev + 1));
+    };
+    const decreaseIndex = () =>{
+        if (leaving) return;
+        toggleLeaving();
+        setBack(true);
+        setIndex((prev) => (prev === 0 ? 2 :prev -1 ));
+    }
+
+    
+
+
+
     return (
     <Wrap>
         <Slider>
             <Text>오늘은 이거 어때요?</Text>
-            <AnimatePresence initial = {false} onExitComplete={toggleLeaving}>
+            <AnimatePresence custom = {back} initial = {false} onExitComplete={toggleLeaving}>
             <Row 
             variants={boxVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
             transition={{ type: "tween", duration: 1 }}
+            custom = {back}
             key = {index}
             >
                 {[1,2,3,4,5,6].slice(offset * index, offset * index + offset)
@@ -124,13 +151,12 @@ function Home(){
                 <Box >
                     뭔가를 넣을겁니다{i}
                 </Box>)}
-            
             </Row>
             <Bar>
-                <Circle num = {0} index = {index} />
-                <Circle num = {1} index = {index} />
-                <Circle num = {2} index = {index} />
+                {[1,2,3].map(i => <Circle num = {i-1} index = {index}/>)}
             </Bar>
+            <Prev onClick = {decreaseIndex} whileHover = {{scale:1.2}}><RiArrowLeftSLine/></Prev>
+            <Next onClick = {increaseIndex} whileHover = {{scale:1.2}}><RiArrowRightSLine/></Next>
             </AnimatePresence>
         </Slider> 
         

@@ -23,15 +23,18 @@ const Col = styled.div`
 
 `
 const Logo = styled.div`
-    font-weight: bold ;
-    font-size: 25px;
-    margin-left: 30px;
-    display: grid;
-    width: 130px;
-    cursor: pointer;
-    span:last-child {
+    a {
+        font-weight: bold ;
+        font-size: 25px;
+        margin-left: 30px;
+        display: grid;
+        width: 130px;
+        cursor: pointer;
+        span:last-child {
         color: ${(props) => props.theme.pointColor}
     }
+}
+    
 `
 const Search = styled.form`
     background-color: ${(props) => props.theme.pointBackColor};
@@ -40,8 +43,10 @@ const Search = styled.form`
     border-radius:10px ;
     padding: 10px;
     color: grey;
-    span {
-        cursor: pointer;
+    button {
+        color: grey;
+        font-size:15px;
+        cursor:pointer;
     }
 `
 const Input = styled.input`
@@ -103,22 +108,22 @@ function Header(){
     <>
         <Nav>
             <Col>
-                <Link to ="/home/location">
-                    <Logo onClick = {()=>onClick()}>
+                <Logo onClick = {()=>onClick()}>
+                    <Link to ="/home/location">
+                    
                         <span>모현에서</span>
                         <span>모먹지</span>
-                    </Logo>
-                </Link>
-                
+                    </Link>
+                </Logo>
                 <Search
                 onSubmit= {handleSubmit(onValid)}
                 >
                     <Input 
                         {...register("keyword", { required: true, minLength: 2 })}
                         placeholder='search'/>
-                    <span>
+                    <button>
                         🔍︎
-                    </span>    
+                    </button>    
                 </Search>
             </Col>
             <Col>
