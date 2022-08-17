@@ -8,12 +8,13 @@ import Location from "../components/Home_components/Location";
 import Menu from "../components/Home_components/Menu";
 
 const Wrap = styled.div`
-    padding-top: 80px;
     overflow-x:hidden;
     position: relative;
-    height: 700px;
     width: 95%;
     margin: 0 auto;
+    top:80px;
+    height: 650px;
+    bottom: 160px;
 `
 const Slider = styled.div`
     height: 300px;
@@ -27,7 +28,7 @@ const Text = styled.div`
 const Row = styled(motion.div)`
     display:flex;
     position: absolute;
-    top:130px;
+    top:50px;
     width: 100%;
     align-items:center ;
     justify-content: center ;
@@ -41,7 +42,7 @@ const Box = styled(motion.div)`
 `
 const Bar = styled(motion.div)`
     position: absolute;
-    top: 350px;
+    top: 280px;
     display: flex;
     width: 100%;
     align-items:center ;
@@ -56,7 +57,7 @@ const Circle = styled(motion.div)`
 `
 const Tabs = styled.div`
     position: absolute;
-    top: 400px;
+    top: 350px;
     display: flex ;
 `
 const Tab = styled.p`
@@ -95,11 +96,10 @@ function Home(){
         const loop = setInterval(() => {
             setIndex(prev => prev === 2? 0 : prev + 1);
         },7000)
-        console.log(locaCategory);
         return () => {
             clearInterval(loop);
         };
-    },[locaCategory])
+    },[])
 
     const onClick = () => {
         setLocaCategory("");
@@ -132,21 +132,22 @@ function Home(){
                 <Circle num = {2} index = {index} />
             </Bar>
             </AnimatePresence>
+        </Slider> 
+        
+        <Tabs>
+            <Tab isActive={locaMatch !== null} onClick={()=>onClick()}>
+                <Link to={ menuMatch || locaMatch || locaCateMatch || menuCateMatch ? "location":"home/location"} style= {{paddingRight:"10px", borderRight:"solid 1.5px black"}}>위치별</Link>
+            </Tab>
+            <Tab isActive={menuMatch !== null} onClick={()=>onClick()}>
+                <Link to={  menuMatch || locaMatch || locaCateMatch || menuCateMatch ? "menu":"home/menu"} style= {{paddingLeft:"10px", }}>메뉴별</Link>
+            </Tab>
+        </Tabs>
 
-            <Tabs>
-                <Tab isActive={locaMatch !== null} onClick={()=>onClick()}>
-                    <Link to={ menuMatch || locaMatch || locaCateMatch || menuCateMatch ? "location":"home/location"} style= {{paddingRight:"10px", borderRight:"solid 1.5px black"}}>위치별</Link>
-                </Tab>
-                <Tab isActive={menuMatch !== null} onClick={()=>onClick()}>
-                    <Link to={  menuMatch || locaMatch || locaCateMatch || menuCateMatch ? "menu":"home/menu"} style= {{paddingLeft:"10px", }}>메뉴별</Link>
-                </Tab>
-            </Tabs>
-
-            <Routes>
-                <Route path = "/location/*" element={<Location/>}/>
-                <Route path = "/menu/*" element={<Menu/>}/>
-            </Routes>
-        </Slider>  
+        <Routes>
+            <Route path = "/location/*" element={<Location/>}/>
+            <Route path = "/menu/*" element={<Menu/>}/>
+        </Routes>
+         
     </Wrap>
         
     )

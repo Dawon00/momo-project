@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import {FiBookmark} from 'react-icons/fi'
+import {FaRegBookmark, FaBookmark} from 'react-icons/fa'
+import { useState } from "react";
 
 const Category = styled.div`
     position: absolute ;
-    top: 530px;
+    top: 470px;
     display:grid;
     grid-template-columns:1fr 1fr ;
     width: 100%;
@@ -31,6 +32,7 @@ const Restaurant = styled.div`
         font-size:20px;
     }
     span:last-child {
+        cursor:pointer;
         font-size:25px;
         color: ${props => props.theme.pointColor}
     }
@@ -46,19 +48,26 @@ const Hashtags = styled.div`
     }
 `
 function ByCategory({category}){
+    const [click, setClick] = useState(false);
+    const [key, setKey] = useState(0);
+
+    const onClick = (b) => {
+        setClick(prev=> !prev);
+        setKey(b);
+    }
     return (
     <Category>
         {[1,2,3,4].map(b => 
-        <Box >
+        <Box key = {b}>
             <Img></Img>
             <Restaurant>
                 <span>음식점 이름</span>
-                <span><FiBookmark/></span>
+                <span onClick = {()=>onClick(b)}>{click&&key===b ? <FaBookmark/>:<FaRegBookmark/>}</span>
             </Restaurant>
             <Hashtags>
-                <span>{category}</span>
-                <span>해시태그</span>
-                <span>해시태그</span>
+                <span>해시태그1</span>
+                <span>해시태그2</span>
+                <span>해시태그3</span>
             </Hashtags>
         </Box>)}
     </Category>)

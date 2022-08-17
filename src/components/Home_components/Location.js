@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, Link, useMatch } from "react-router-dom";
+import { Routes, Route, Link, useMatch, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import styled,{css} from "styled-components";
 import { categoryState, locaCateState } from "../../atom";
@@ -7,7 +7,7 @@ import ByCategory from "./ByCategory";
 
 const Categories = styled.ul`
     position: absolute ;
-    top:430px;
+    top:380px;
     display: flex ;
 `
 const Category = styled.li`
@@ -74,7 +74,6 @@ function Location(){
         setLocaCategory(name);
     }
     const cateMatch = useMatch(`home/location/${locaCategory}`);
-
     return (
         <>
             <Categories>

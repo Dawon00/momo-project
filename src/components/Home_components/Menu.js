@@ -7,7 +7,7 @@ import ByCategory from "./ByCategory";
 
 const Categories = styled.ul`
     position: absolute ;
-    top:430px;
+    top:380px;
     display: flex ;
 `
 const Category = styled.li`
