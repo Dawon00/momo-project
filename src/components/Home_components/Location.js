@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import styled from "styled-components";
-import { createGlobalStyle } from "styled-components";
+import { Routes, Route, Link, useMatch } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import styled,{css} from "styled-components";
+import { categoryState } from "../../atom";
 import ByCategory from "./ByCategory";
 
 const Categories = styled.ul`
@@ -21,6 +21,7 @@ const Category = styled.li`
     color: #6D6D6D;
     cursor: pointer;
     a{
+        padding:20px 10px 20px 10px;
         display:grid;
         span:first-child{
             font-size:25px;
@@ -31,44 +32,63 @@ const Category = styled.li`
         }
     }
     
+    ${props => props.active && css`
+        border: 1px solid ${props=>props.theme.pointColor};
+        background-color:  #F0EDFF;
+    `}
+    
 `
 
-function Location(){
-    const [category, setCategory] = useState("");
+const categories = [
+    {
+        name: 'hufsIntersection',
+        emogi: '🌻',
+        text: '외대사거리'
+    },
+    {
+        name:'MohyeonIntersection',
+        emogi: '🌷',
+        text: '모현사거리'
+    },
+    {
+        name:'delivery',
+        emogi: '🛵',
+        text: '배달'
+    },
+    {
+        name:'onCampus',
+        emogi: '🏫',
+        text: '교내'
+    },
+]
 
+
+
+function Location(){
+    const [category, setCategory] = useRecoilState(categoryState);
+    
     const onClick = (cate) => {
         setCategory(cate);
     }
+    const cateMatch = useMatch(`home/location/${category}`)
+    
 
     return (
         <>
             <Categories>
-                <Category onClick={()=>onClick("외대사거리")}>
-                    <Link to = ":key">
-                        <span>🌻</span>
-                        <span>외대사거리</span>
-                    </Link>
-                    
-                </Category>
-                <Category onClick={()=>onClick("모현사거리")}>
-                    <Link to = ":key">
-                        <span>🌷</span>
-                        <span>모현사거리</span>
-                    </Link>
-                </Category>
-                <Category onClick={()=>onClick("배달")}>
-                    <Link to = ":key">
-                        <span>🛵</span>
-                        <span>배달</span>
-                    </Link>
-                </Category>
-                <Category onClick={()=>onClick("교내")}>
-                    <Link to = ":key">
-                        <span>🏫</span>
-                        <span>교내</span>
-                    </Link>
-                </Category>
+                {categories.map(c => (
+                    <Category isActive = {cateMatch !== null} active = {category === c.name}> 
+                     <Link to = {`${c.name}`} onClick = {()=>onClick(c.name)} >
+                        <span>{c.emogi}</span>
+                        <span>{c.text}</span>
+                         </Link>
+                    </Category> 
+                ))}
             </Categories>
+
+            <Routes>
+                <Route path = "/:category" element={<ByCategory category={category}/>}/>
+            </Routes>
         </>
     )
 }

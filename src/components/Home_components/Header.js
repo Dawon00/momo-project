@@ -3,6 +3,8 @@ import styled from "styled-components";
 import {useForm} from 'react-hook-form';
 import { useState } from 'react';
 import {FiBookmark, FiUser} from 'react-icons/fi'
+import { categoryState } from '../../atom';
+import { useSetRecoilState } from 'recoil';
 
 const Nav = styled.nav`
     position:fixed;
@@ -90,12 +92,17 @@ function Header(){
     const onValid = (data) => {
         navigate(`/search?keyword=${data.keyword}`)
     }
+
+    const setCategory = useSetRecoilState(categoryState);
+    const onClick = () => {
+        setCategory("");
+    }
  return (
     <>
         <Nav>
             <Col>
                 <Link to ="/home/location">
-                    <Logo>
+                    <Logo onClick = {()=>onClick()}>
                         <span>모현에서</span>
                         <span>모먹지</span>
                     </Logo>

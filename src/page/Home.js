@@ -1,13 +1,15 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState ,useEffect} from "react";
 import { Link, Route, Routes, useMatch } from "react-router-dom";
+import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
+import { categoryState } from "../atom";
 import Location from "../components/Home_components/Location";
 import Menu from "../components/Home_components/Menu";
 
 const Wrap = styled.div`
     padding-top: 80px;
-    overflow:hidden;
+    overflow-x:hidden;
     position: relative;
     height: 700px;
     width: 95%;
@@ -84,6 +86,10 @@ function Home(){
     const locaMatch = useMatch("home/location");
     const menuMatch = useMatch("home/menu");
 
+    const [category, setCategory] = useRecoilState(categoryState);
+    const locaCateMatch = useMatch(`home/location/${category}` )
+    const menuCateMatch = useMatch(`home/menu/${category}`)
+
     useEffect(()=> {
         const loop = setInterval(() => {
             setIndex(prev => prev === 2? 0 : prev + 1);
@@ -93,7 +99,10 @@ function Home(){
         };
     },[])
 
-    
+    const onClick = () => {
+        setCategory("");
+    }
+
     return (
     <Wrap>
         <Slider>
@@ -122,17 +131,17 @@ function Home(){
             </AnimatePresence>
 
             <Tabs>
-                <Tab isActive={locaMatch !== null}>
-                    <Link to={ menuMatch || locaMatch? "location":"home/location"} style= {{paddingRight:"10px", borderRight:"solid 1.5px black"}}>위치별</Link>
+                <Tab isActive={locaMatch !== null} onClick={()=>onClick()}>
+                    <Link to={ menuMatch || locaMatch || locaCateMatch || menuCateMatch ? "location":"home/location"} style= {{paddingRight:"10px", borderRight:"solid 1.5px black"}}>위치별</Link>
                 </Tab>
-                <Tab isActive={menuMatch !== null}>
-                    <Link to={  menuMatch || locaMatch ? "menu":"home/menu"} style= {{paddingLeft:"10px", }}>메뉴별</Link>
+                <Tab isActive={menuMatch !== null} onClick={()=>onClick()}>
+                    <Link to={  menuMatch || locaMatch || locaCateMatch || menuCateMatch ? "menu":"home/menu"} style= {{paddingLeft:"10px", }}>메뉴별</Link>
                 </Tab>
             </Tabs>
 
             <Routes>
-                <Route path = "/location" element={<Location/>}/>
-                <Route path = "/menu" element={<Menu/>}/>
+                <Route path = "/location/*" element={<Location/>}/>
+                <Route path = "/menu/*" element={<Menu/>}/>
             </Routes>
         </Slider>  
     </Wrap>
