@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useState ,useEffect} from "react";
+import { useState ,useEffect, useRef} from "react";
 import { Link, Route, Routes, useMatch } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
@@ -128,8 +128,6 @@ function Home(){
         setIndex((prev) => (prev === 0 ? 2 :prev -1 ));
     }
 
-    
-
 
 
     return (
@@ -145,6 +143,22 @@ function Home(){
             transition={{ type: "tween", duration: 1 }}
             custom = {back}
             key = {index}
+            drag = "x"
+            dragSnapToOrigin
+            dragConstraints = {{left:-100, right:100}}
+            onDragEnd={
+                (e, info) => {
+                    if (info.point.x <= 500 ) {
+                        setBack(false);
+                        setIndex((prev) => (prev === 2 ? 0 : prev + 1));
+                    }
+                    if (info.point.x >= 800){
+                        setBack(true);
+                        setIndex((prev) => (prev === 0 ? 2 :prev -1 ));
+                    }
+                }
+
+              }
             >
                 {[1,2,3,4,5,6].slice(offset * index, offset * index + offset)
                 .map(i =>
