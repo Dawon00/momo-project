@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {FaRegBookmark, FaBookmark} from 'react-icons/fa'
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useMatch, useParams } from "react-router-dom";
 import data from "../api_components/Api.json"
 
 const Category = styled.div`
@@ -49,6 +49,27 @@ const Hashtags = styled.div`
         color: #6D6D6D;
     }
 `
+
+const categories = [
+    {
+        text: '외대사거리',
+        short:'외사'
+    },
+    {
+        text: '모현사거리',
+        short:'모사'
+    },
+    {
+        text: '배달',
+        short:'배달'
+    },
+    {
+        text: '교내',
+        short:'교내'
+    },
+]
+
+
 function ByCategory({category}){
     const [click, setClick] = useState(false);
     const [key, setKey] = useState(0);
@@ -57,9 +78,18 @@ function ByCategory({category}){
         setClick(prev=> !prev);
         setKey(b);
     }
-    const categoryData = data.apiList.filter(d => d.bCategory === category)
+    const locaMatch = useMatch("home/location/*");
+
+    if (locaMatch ){
+        for (var i = 0; i < 4 ;i++){
+            if (category === categories[i].text){
+                category = categories[i].short;
+            }
+        }
+    }
     
-    console.log(categoryData);
+    const categoryData = data.apiList.filter(d => (locaMatch ?d.bLocation :d.bCategory) === category)
+
     return (
     <Category category = {category}>
         {categoryData.map(b => 

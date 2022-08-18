@@ -48,22 +48,26 @@ const categories = [
     {
         name: 'hufsIntersection',
         emogi: '🌻',
-        text: '외대사거리'
+        text: '외대사거리',
+        
     },
     {
         name:'MohyeonIntersection',
         emogi: '🌷',
-        text: '모현사거리'
+        text: '모현사거리',
+        
     },
     {
         name:'delivery',
         emogi: '🛵',
-        text: '배달'
+        text: '배달',
+        
     },
     {
         name:'onCampus',
         emogi: '🏫',
-        text: '교내'
+        text: '교내',
+        
     },
 ]
 

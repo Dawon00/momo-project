@@ -43,7 +43,7 @@ const Category = styled.li`
         background-color:  #F0EDFF;
     `}
 `
-export const categories = [
+const categories = [
     {
         name: 'meat',
         emogi: '🥩',
