@@ -25,7 +25,7 @@ const Category = styled.li`
         background-color: #F0EDFF;
     }
 
-    
+
     a{
         padding:20px 10px 20px 10px;
         display:grid;
@@ -43,7 +43,7 @@ const Category = styled.li`
         background-color:  #F0EDFF;
     `}
 `
-const categories = [
+export const categories = [
     {
         name: 'meat',
         emogi: '🥩',

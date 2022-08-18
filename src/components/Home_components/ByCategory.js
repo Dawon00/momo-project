@@ -2,6 +2,7 @@ import styled from "styled-components";
 import {FaRegBookmark, FaBookmark} from 'react-icons/fa'
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import data from "../api_components/Api.json"
 
 const Category = styled.div`
     position: absolute ;
@@ -56,20 +57,22 @@ function ByCategory({category}){
         setClick(prev=> !prev);
         setKey(b);
     }
+    const categoryData = data.apiList.filter(d => d.bCategory === category)
     
+    console.log(categoryData);
     return (
     <Category category = {category}>
-        {[1,2,3,4].map(b => 
-        <Box key = {b}>
+        {categoryData.map(b => 
+        <Box key = {b.name}>
             <Img></Img>
             <Restaurant>
-                <span>음식점 이름</span>
-                <span onClick = {()=>onClick(b)}>{click&&key===b ? <FaBookmark/>:<FaRegBookmark/>}</span>
+                <span>{b.name}</span>
+                <span onClick = {()=>onClick(b)}>{click&& key===b.name ? <FaBookmark/>:<FaRegBookmark/>}</span>
             </Restaurant>
             <Hashtags>
-                <span>해시태그1</span>
-                <span>해시태그2</span>
-                <span>해시태그3</span>
+                {b.bCategory ?<span>{b.bCategory}</span> :null}
+                {b.bLocation ?<span>{b.bLocation}</span> :null}
+                {b.hastag ? <span>{b.hastag}</span> :null}
             </Hashtags>
         </Box>)}
     </Category>)
