@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Routes, Route, Link, useMatch, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -5,12 +6,12 @@ import styled,{css} from "styled-components";
 import { categoryState, locaCateState } from "../../atom";
 import ByCategory from "./ByCategory";
 
-const Categories = styled.ul`
+const Categories = styled(motion.ul)`
     position: absolute ;
     top:380px;
     display: flex ;
 `
-const Category = styled.li`
+const Category = styled(motion.li)`
     text-align: center ;
     border: 1px solid #ECECEC;
     border-radius:10px ;
@@ -76,9 +77,12 @@ function Location(){
     const cateMatch = useMatch(`home/location/${locaCategory}`);
     return (
         <>
-            <Categories>
+            <Categories >
                 {categories.map(c => (
-                    <Category isActive = {cateMatch !== null} active = {locaCategory === c.name}> 
+                    <Category 
+                    whilehover = {{scale: 1.5}} 
+                    isActive = {cateMatch !== null} 
+                    active = {locaCategory === c.name}> 
                      <Link to = {`${c.name}`} onClick = {()=>onClick(c.name, c.text)} >
                         <span>{c.emogi}</span>
                         <span>{c.text}</span>
@@ -86,6 +90,7 @@ function Location(){
                     </Category> 
                 ))}
             </Categories>
+            
 
             <Routes>
                 <Route path = "/:locaCategory" element={<ByCategory category={category}/>}/>

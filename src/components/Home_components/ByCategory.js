@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import {FaRegBookmark, FaBookmark} from 'react-icons/fa'
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 const Category = styled.div`
     position: absolute ;
-    top: 470px;
+    top: ${props => props.category === "all" ? "390px" : "470px"};
     display:grid;
     grid-template-columns:1fr 1fr ;
     width: 100%;
@@ -55,8 +56,9 @@ function ByCategory({category}){
         setClick(prev=> !prev);
         setKey(b);
     }
+    
     return (
-    <Category>
+    <Category category = {category}>
         {[1,2,3,4].map(b => 
         <Box key = {b}>
             <Img></Img>

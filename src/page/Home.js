@@ -7,6 +7,7 @@ import { locaCateState, menuCateState } from "../atom";
 import Location from "../components/Home_components/Location";
 import Menu from "../components/Home_components/Menu";
 import {RiArrowRightSLine, RiArrowLeftSLine} from "react-icons/ri"
+import ByCategory from "../components/Home_components/ByCategory";
 
 const Wrap = styled.div`
     overflow-x:hidden;
@@ -73,13 +74,25 @@ const Tabs = styled.div`
     position: absolute;
     top: 350px;
     display: flex ;
+    p {
+       border-right:1px solid #B6B6B6; 
+    }
+    p:first-child {
+        padding-left:0;
+    }
+    p:last-child {
+        border:none;
+    }
+
 `
 const Tab = styled.p`
     font-weight: bold ;
-
+    padding-right: 10px;
+    padding-left:10px ;
+    
 `
 
-const boxVariants = {
+const rowVariants = {
     hidden: (back)=> ({
       x: back ? -844 :  844,
     }),
@@ -100,6 +113,7 @@ function Home(){
 
     const toggleLeaving = () => setLeaving((prev) => !prev);
 
+    const allMatch = useMatch("home/all");
     const locaMatch = useMatch("home/location");
     const menuMatch = useMatch("home/menu");
 
@@ -136,7 +150,7 @@ function Home(){
             <Text>오늘은 이거 어때요?</Text>
             <AnimatePresence custom = {back} initial = {false} onExitComplete={toggleLeaving}>
             <Row 
-            variants={boxVariants}
+            variants={rowVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
@@ -175,15 +189,19 @@ function Home(){
         </Slider> 
         
         <Tabs>
+            <Tab isActive={allMatch !== null} onClick={()=>onClick()}>
+                <Link to={allMatch|| menuMatch || locaMatch || locaCateMatch || menuCateMatch ? "all":"home/all"} >전체</Link>
+            </Tab>
             <Tab isActive={locaMatch !== null} onClick={()=>onClick()}>
-                <Link to={ menuMatch || locaMatch || locaCateMatch || menuCateMatch ? "location":"home/location"} style= {{paddingRight:"10px", borderRight:"solid 1.5px black"}}>위치별</Link>
+                <Link to={allMatch|| menuMatch || locaMatch || locaCateMatch || menuCateMatch ? "location":"home/location"} >위치별</Link>
             </Tab>
             <Tab isActive={menuMatch !== null} onClick={()=>onClick()}>
-                <Link to={  menuMatch || locaMatch || locaCateMatch || menuCateMatch ? "menu":"home/menu"} style= {{paddingLeft:"10px", }}>메뉴별</Link>
+                <Link to={allMatch||  menuMatch || locaMatch || locaCateMatch || menuCateMatch ? "menu":"home/menu"}>메뉴별</Link>
             </Tab>
         </Tabs>
 
         <Routes>
+            <Route path = "/all" element = {<ByCategory category = "all"/>}/>
             <Route path = "/location/*" element={<Location/>}/>
             <Route path = "/menu/*" element={<Menu/>}/>
         </Routes>
