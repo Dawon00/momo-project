@@ -33,10 +33,13 @@ const Category = styled(motion.li)`
             font-size:13px;
         }
     }
+    &:hover {
+        background-color: #F0EDFF;
+    }
     
     ${props => props.active && css`
         border: 1px solid ${props=>props.theme.pointColor};
-        background-color:  #F0EDFF;
+        background-color: #F0EDFF;
     `}
     
 `
@@ -82,7 +85,8 @@ function Location(){
                     <Category 
                     whilehover = {{scale: 1.5}} 
                     isActive = {cateMatch !== null} 
-                    active = {locaCategory === c.name}> 
+                    active = {locaCategory === c.name}
+                    > 
                      <Link to = {`${c.name}`} onClick = {()=>onClick(c.name, c.text)} >
                         <span>{c.emogi}</span>
                         <span>{c.text}</span>

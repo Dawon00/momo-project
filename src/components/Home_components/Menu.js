@@ -20,6 +20,12 @@ const Category = styled.li`
     display: grid;
     align-content: center;
     color: #6D6D6D;
+
+    &:hover {
+        background-color: #F0EDFF;
+    }
+
+    
     a{
         padding:20px 10px 20px 10px;
         display:grid;
