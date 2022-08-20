@@ -4,9 +4,9 @@ import { useState } from "react";
 import { useMatch, useParams } from "react-router-dom";
 import data from "../api_components/Api.json"
 
-const Category = styled.div`
+const Wrap = styled.div`
     position: absolute ;
-    top: 470px;
+    top: 390px;
     display:grid;
     grid-template-columns:1fr 1fr ;
     width: 100%;
@@ -70,34 +70,21 @@ const categories = [
 ]
 
 
-function ByCategory({category}){
+function All({category}){
     const [click, setClick] = useState(false);
     const [key, setKey] = useState(0);
-
-    const {cate} = useParams();
-
-    console.log(cate);
 
     const onClick = (b) => {
         setClick(prev=> !prev);
         setKey(b);
     }
-    const match = useMatch(`/${cate}`);
-    const locaMatch = useMatch("home/location/*");
-
-    if (locaMatch ){
-        for (var i = 0; i < 4 ;i++){
-            if (category === categories[i].text){
-                category = categories[i].short;
-            }
-        }
-    }
     
-    const categoryData = data.apiList.filter(d => (locaMatch ?d.bLocation :d.bCategory) === category)
+    const categoryData = data.apiList
+
     return (
-    <Category>
+    <Wrap category = {category}>
         {categoryData.map(b => 
-        <Box key = {b.name} isActive = {match !== null} >
+        <Box key = {b.name}>
             <Img></Img>
             <Restaurant>
                 <span>{b.name}</span>
@@ -109,7 +96,7 @@ function ByCategory({category}){
                 {b.hastag ? <span>{b.hastag}</span> :null}
             </Hashtags>
         </Box>)}
-    </Category>)
+    </Wrap>)
 }
 
-export default ByCategory;
+export default All;

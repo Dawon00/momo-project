@@ -109,7 +109,7 @@ function Header(){
         <Nav>
             <Col>
                 <Logo onClick = {()=>onClick()}>
-                    <Link to ="/home/location">
+                    <Link to ="/home/all">
                     
                         <span>모현에서</span>
                         <span>모먹지</span>

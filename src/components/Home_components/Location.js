@@ -101,7 +101,7 @@ function Location(){
             
 
             <Routes>
-                <Route path = "/:locaCategory" element={<ByCategory category={category}/>}/>
+                <Route path = "/:cate" element={<ByCategory category={category}/>}/>
             </Routes>
         </>
     )

@@ -101,7 +101,7 @@ function Menu(){
             </Categories>
 
             <Routes>
-                <Route path = "/:menuCategory" element={<ByCategory category={category}/>}/>
+                <Route path = "/:cate" element={<ByCategory category={category}/>}/>
             </Routes>
         </>
     )

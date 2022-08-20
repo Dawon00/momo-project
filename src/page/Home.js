@@ -8,6 +8,7 @@ import Location from "../components/Home_components/Location";
 import Menu from "../components/Home_components/Menu";
 import {RiArrowRightSLine, RiArrowLeftSLine} from "react-icons/ri"
 import ByCategory from "../components/Home_components/ByCategory";
+import All from "../components/Home_components/All";
 
 const Wrap = styled.div`
     overflow-x:hidden;
@@ -15,7 +16,7 @@ const Wrap = styled.div`
     width: 95%;
     margin: 0 auto;
     top:80px;
-    height: 650px;
+    height: 72vh;
     bottom: 160px;
 `
 const Slider = styled.div`
@@ -201,7 +202,7 @@ function Home(){
         </Tabs>
 
         <Routes>
-            <Route path = "/all" element = {<ByCategory category = "all"/>}/>
+            <Route path = "/all" element = {<All/>}/>
             <Route path = "/location/*" element={<Location/>}/>
             <Route path = "/menu/*" element={<Menu/>}/>
         </Routes>
