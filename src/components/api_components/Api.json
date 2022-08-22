@@ -86,7 +86,7 @@
         },
         {
             "name": "피자보이",
-            "bCategory": "패스트푸트/분식",
+            "bCategory": "패스트푸드/분식",
             "bLocation": "모사",
             "holiday": "매일11:00 - 23:00",
             "sLocation": "경기 용인시 처인구 모현읍 외대로26번길 2",
@@ -94,19 +94,19 @@
         },
         {
             "name": "교촌치킨",
-            "bCategory": "패스트푸트/분식",
+            "bCategory": "패스트푸드/분식",
             "bLocation": "외사",
             "sCategory": "치킨"
         },
         {
             "name": "bhc",
-            "bCategory": "패스트푸트/분식",
+            "bCategory": "패스트푸드/분식",
             "bLocation": "외사",
             "sCategory": "치킨"
         },
         {
             "name": "지코바",
-            "bCategory": "패스트푸트/분식",
+            "bCategory": "패스트푸드/분식",
             "bLocation": "모사",
             "sCategory": "치킨"
         },
@@ -177,33 +177,33 @@
         },
         {
             "name": "미쳐버린 파닭 용인외대점",
-            "bCategory": "패스트푸트/분식",
+            "bCategory": "패스트푸드/분식",
             "bLocation": "모사",
             "sLocation": "경기 용인시 처인구 모현읍 백옥대로2384번길 21-2 누나네",
             "sCategory": "치킨/피자 세트"
         },
         {
             "name": "롯데리아 용인모현점",
-            "bCategory": "패스트푸트/분식",
+            "bCategory": "패스트푸드/분식",
             "bLocation": "외사",
             "sLocation": "경기 용인시 처인구 모현읍 백옥대로 2387 목우촌",
             "sCategory": "햄버거"
         },
         {
             "name": "동대문엽기떡볶이 용인모현점",
-            "bCategory": "패스트푸트/분식",
+            "bCategory": "패스트푸드/분식",
             "bLocation": "모사",
             "sLocation": "경기 용인시 처인구 모현읍 백옥대로2384번길 20",
             "sCategory": "떡볶이"
         },
         {
             "name": "신전떡볶이",
-            "bCategory": "패스트푸트/분식",
+            "bCategory": "패스트푸드/분식",
             "bLocation": "외사"
         },
         {
             "name": "리오부리또",
-            "bCategory": "패스트푸트/분식"
+            "bCategory": "패스트푸드/분식"
         },
         {
             "name": "전라도 야식",
