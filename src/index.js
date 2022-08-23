@@ -1,26 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { RecoilRoot } from 'recoil';
-import { ThemeProvider } from 'styled-components';
-import App from './App';
-import { GlobalStyle } from './globalStyle';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { RecoilRoot } from "recoil";
+import { ThemeProvider } from "styled-components";
+import App from "./App";
+import { GlobalStyle } from "./globalStyle";
+import reportWebVitals from "./reportWebVitals";
+import firebase from "./Firebase";
 
 const theme = {
   pointColor: "#6A48F3",
   pointBackColor: "#ECECEC",
 };
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <RecoilRoot>
-      <ThemeProvider theme = {theme}>
-        <GlobalStyle/>
-        <App/>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <App />
       </ThemeProvider>
     </RecoilRoot>
-    
   </React.StrictMode>
 );
 
