@@ -29,8 +29,6 @@ const Profile = ()=>{
   console.log(userList);
   return(
     <div>
-        <Header/>
-        <Footer/>
     </div>
     
   );

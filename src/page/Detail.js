@@ -4,10 +4,12 @@ import { Card, Col, Row, Stack, Container } from "react-bootstrap";
 import "./Detail.css";
 const { kakao } = window;
 
+const AllWrap = styled.div`
+  height: 100%;
+`
 const Wrap = styled.div`
   position: relative;
   width: 95%;
-  height: 72vh;
   margin: 0 auto;
   top: 80px;
 `;
@@ -95,7 +97,7 @@ function Detail() {
   }, []);
 
   return (
-    <div>
+    <AllWrap>
       <Wrap>
         <Row>
           <Col>
@@ -150,7 +152,7 @@ function Detail() {
           </Row>
         </MenuContainer>
       </Wrap>
-    </div>
+    </AllWrap>
   );
 }
 

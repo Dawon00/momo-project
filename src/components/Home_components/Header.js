@@ -30,6 +30,7 @@ const Logo = styled.div`
         display: grid;
         width: 130px;
         cursor: pointer;
+        color: black;
         span:last-child {
         color: ${(props) => props.theme.pointColor}
     }
@@ -38,7 +39,7 @@ const Logo = styled.div`
 `
 const Search = styled.form`
     background-color: ${(props) => props.theme.pointBackColor};
-    height: 20px;
+    height: 40px;
     line-height: 20px ;
     border-radius:10px ;
     padding: 10px;
