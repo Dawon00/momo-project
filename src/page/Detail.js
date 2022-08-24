@@ -1,26 +1,10 @@
 import styled from "styled-components";
-import React, { useRef, useEffect, useState } from "react";
-import ReactMapGL, { Marker, Popup, NavigationControl } from "react-map-gl";
-import mapboxgl from "mapbox-gl";
+import React, { useEffect, useState } from "react";
 import { Card, Col, Row, Stack, Container } from "react-bootstrap";
-import { throttle } from "lodash";
-
 import "./Detail.css";
-
-const storeList = [
-  { name: "CU", location: [37.565964, 126.986574] },
-  { name: "할리스", location: [37.564431, 126.986591] },
-  { name: "세븐일레븐", location: [37.565188, 126.983238] },
-  { name: "파리바게트", location: [37.564869, 126.98445] },
-  { name: "스타벅스", location: [37.562003, 126.985829] },
-];
-
-//accessToken
-mapboxgl.accessToken =
-  "pk.eyJ1IjoiZGF3b24wMCIsImEiOiJjbDc2cnRlZWMwbWtrM3Z0ODE5N2x4MHRtIn0.AVW7DpQUCvpw_CoeIWsDXA";
+const { kakao } = window;
 
 const Wrap = styled.div`
-  overflow-x: hidden;
   position: relative;
   width: 95%;
   margin: 0 auto;
@@ -39,33 +23,24 @@ const Location = styled.h3`
   font-weight: bold;
 `;
 
+const MapCard = styled.div`
+  padding: 1rem;
+  margin: 1.75rem;
+  border-radius: 4px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+  color: white;
+`;
+
 function Detail() {
-  //location
-  const [viewport, setViewport] = useState({
-    latitude: 37.5326,
-    longitude: 127.024612,
-    width: "100vw",
-    height: "100vh",
-    zoom: 17,
-  });
+  //kakaoMapScript
   useEffect(() => {
-    const mapResizeEvent = throttle(() => {
-      setViewport(
-        Object.assign(
-          {},
-          {
-            ...viewport,
-            width: `${window.innerWidth}px`,
-            height: `${window.innerHeight}px`,
-          }
-        )
-      );
-    }, 2000);
-    window.addEventListener("resize", mapResizeEvent);
-    return () => {
-      window.removeEventListener("resize", mapResizeEvent);
+    const container = document.getElementById("myMap");
+    const options = {
+      center: new kakao.maps.LatLng(33.450701, 126.570667),
+      level: 3,
     };
-  }, [viewport]);
+    const map = new kakao.maps.Map(container, options);
+  }, []);
 
   return (
     <div>
@@ -92,32 +67,15 @@ function Detail() {
           </Col>
         </Row>
       </Wrap>
-
-      <div className="Mapbox">
-        <ReactMapGL
-          {...viewport}
-          transitionDuration={800}
-          mapboxApiAccessToken={mapboxgl.accessToken}
-          mapStyle="mapbox://styles/mapbox/streets-v9"
-          onViewportChange={(viewport) => {
-            setViewport(viewport);
+      <MapCard>
+        <div
+          id="myMap"
+          style={{
+            width: "100%",
+            height: "250px",
           }}
-        >
-          <div className="navi-control">
-            <NavigationControl />
-          </div>
-          {storeList.map((store, i) => (
-            <Marker
-              key={i}
-              latitude={store.location[0]}
-              longitude={store.location[1]}
-            >
-              {" "}
-              <button className="btn-marker" />{" "}
-            </Marker>
-          ))}
-        </ReactMapGL>
-      </div>
+        ></div>
+      </MapCard>
 
       <MenuContainer>
         <div>
