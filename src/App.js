@@ -13,7 +13,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/bookmark" element={<Bookmark />} />
-        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/detail" element={<Detail />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/search" element={<Search />} />
 

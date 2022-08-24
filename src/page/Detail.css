@@ -1,0 +1,20 @@
+.Box{
+ border-radius: 35px;
+         padding: 30px;
+
+}
+
+.navi-control{
+  position:absolute;
+  right:0
+}
+
+.btn-marker{
+  background: url('../../public/pin.png') no-repeat / contain;
+  width: 22px;
+  height: 35px;
+  border : none;
+}
+.btn-marker:focus{
+  outline: transparent;
+}

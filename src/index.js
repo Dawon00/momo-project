@@ -5,7 +5,8 @@ import { ThemeProvider } from "styled-components";
 import App from "./App";
 import { GlobalStyle } from "./globalStyle";
 import reportWebVitals from "./reportWebVitals";
-import firebase from "./Firebase";
+
+//import firebase from "Firebase.js";
 
 const theme = {
   pointColor: "#6A48F3",
