@@ -7,6 +7,7 @@ const { kakao } = window;
 const Wrap = styled.div`
   position: relative;
   width: 95%;
+  height: 72vh;
   margin: 0 auto;
   top: 80px;
 `;
@@ -14,9 +15,35 @@ const Wrap = styled.div`
 const MenuContainer = styled.div`
   background: white;
 `;
-
+const Box = styled.div`
+  margin: 5px;
+  border: 1px solid #ececec;
+  border-radius: 3px;
+`;
+const Img = styled.div`
+  background-color: #f0edff;
+  height: 250px;
+`;
 const Title = styled.h1`
   font-size: 1.5em;
+`;
+
+const Restaurant = styled.div`
+  height: 50px;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  span:first-child {
+    font-weight: bold;
+    font-size: 20px;
+  }
+  span:last-child {
+    cursor: pointer;
+    font-size: 25px;
+    color: ${(props) => props.theme.pointColor};
+  }
 `;
 
 const Location = styled.h3`
@@ -29,6 +56,17 @@ const MapCard = styled.div`
   border-radius: 4px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   color: white;
+`;
+
+const Hashtags = styled.div`
+  margin: 10px 10px 20px 10px;
+  span {
+    border-radius: 10px;
+    background-color: #ececec;
+    padding: 5px;
+    margin-right: 10px;
+    color: #6d6d6d;
+  }
 `;
 
 function Detail() {
@@ -61,16 +99,14 @@ function Detail() {
       <Wrap>
         <Row>
           <Col>
-            <Card style={{ width: "18rem" }}>
-              <Card.Img
-                variant="top"
-                src="https://codingapple1.github.io/shop/shoes1.jpg"
-              />
-              <Card.Body>
-                <Card.Title>가게 이름</Card.Title>
-                <Card.Text>태그 위치</Card.Text>
-              </Card.Body>
-            </Card>
+            <Box>
+              <Img></Img>
+              <Restaurant>
+                <span>name</span>
+                <span></span>
+              </Restaurant>
+              <Hashtags></Hashtags>
+            </Box>
           </Col>
           <Col>
             <Stack gap={3}>
@@ -80,39 +116,40 @@ function Detail() {
             </Stack>
           </Col>
         </Row>
-      </Wrap>
-      <MapCard>
-        <div
-          id="myMap"
-          style={{
-            width: "100%",
-            height: "250px",
-          }}
-        ></div>
-      </MapCard>
 
-      <MenuContainer>
-        <div>
-          <h1>대표 메뉴</h1>
-        </div>
-        <Row xs={1} md={2} className="g-4">
-          {Array.from({ length: 4 }).map((_, idx) => (
-            <Col>
-              <Card>
-                <Card.Img
-                  variant="top"
-                  src="https://codingapple1.github.io/shop/shoes1.jpg"
-                  width="50%"
-                />
-                <Card.Body>
-                  <Card.Title>메뉴이름</Card.Title>
-                  <Card.Text>메뉴 가격</Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
-      </MenuContainer>
+        <MapCard>
+          <div
+            id="myMap"
+            style={{
+              width: "100%",
+              height: "250px",
+            }}
+          ></div>
+        </MapCard>
+
+        <MenuContainer>
+          <div>
+            <h1>대표 메뉴</h1>
+          </div>
+          <Row xs={1} md={2} className="g-4">
+            {Array.from({ length: 4 }).map((_, idx) => (
+              <Col>
+                <Card>
+                  <Card.Img
+                    variant="top"
+                    src="https://codingapple1.github.io/shop/shoes1.jpg"
+                    width="50%"
+                  />
+                  <Card.Body>
+                    <Card.Title>메뉴이름</Card.Title>
+                    <Card.Text>메뉴 가격</Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </MenuContainer>
+      </Wrap>
     </div>
   );
 }
