@@ -3,8 +3,8 @@ import styled from "styled-components";
 import {useForm} from 'react-hook-form';
 import { useState } from 'react';
 import {FiBookmark, FiUser} from 'react-icons/fi'
-import {locaCateState, menuCateState } from '../../atom';
-import { useSetRecoilState } from 'recoil';
+import {locaCateState, menuCateState,userStoredList } from '../../atom';
+import { useRecoilValue,useSetRecoilState} from 'recoil';
 
 const Nav = styled.nav`
     position:fixed;
@@ -90,8 +90,8 @@ const Profile = styled(Bookmark)`
 `
 
 function Header(){
-    const [user,setUser] = useState("김주원");
-
+    // const [user,setUser] = useState("김주원");
+    const userName = useRecoilValue(userStoredList);
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm();
     const onValid = (data) => {
@@ -131,7 +131,7 @@ function Header(){
                 <Item>
                     <Welcome>
                         <span>반가워요,</span>
-                        <span>{user}</span>
+                        {/* <span>{userName}</span> */}
                         <span>님!</span>
                     </Welcome>
                 </Item>
