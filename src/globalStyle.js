@@ -50,12 +50,13 @@ export const GlobalStyle = createGlobalStyle`
     }
     html {
         background-color: rgb(236, 240, 241);
+        height: 100%;
     }
     body {
         margin: 0 auto;
         background-color: white;
-        height: 100vh;
         overflow-x: hidden ;
+        min-height:100%;
     }
     body{-ms-overflow-style:none; }
     body::-webkit-scrollbar { display:none; }

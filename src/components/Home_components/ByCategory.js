@@ -3,10 +3,12 @@ import {FaRegBookmark, FaBookmark} from 'react-icons/fa'
 import { useState } from "react";
 import { useMatch, useParams } from "react-router-dom";
 import data from "../api_components/Api.json"
+import CategoryBox from "./CategoryBox";
 
+const Wrap = styled.div`
+    margin-top:20px;
+`
 const Category = styled.div`
-    position: absolute ;
-    top: 470px;
     display:grid;
     grid-template-columns:1fr 1fr ;
     width: 100%;
@@ -76,16 +78,14 @@ function ByCategory({category}){
 
     const {cate} = useParams();
 
-    console.log(cate);
-
-    const onClick = (b) => {
+    const onClick = () => {
         setClick(prev=> !prev);
-        setKey(b);
+        console.log("click");
     }
     const match = useMatch(`/${cate}`);
     const locaMatch = useMatch("home/location/*");
 
-    if (locaMatch ){
+    if (locaMatch){
         for (var i = 0; i < 4 ;i++){
             if (category === categories[i].text){
                 category = categories[i].short;
@@ -95,21 +95,23 @@ function ByCategory({category}){
     
     const categoryData = data.apiList.filter(d => (locaMatch ?d.bLocation :d.bCategory) === category)
     return (
+    <Wrap>
     <Category>
         {categoryData.map(b => 
-        <Box key = {b.name} isActive = {match !== null} >
-            <Img></Img>
-            <Restaurant>
-                <span>{b.name}</span>
-                <span onClick = {()=>onClick(b)}>{click&& key===b.name ? <FaBookmark/>:<FaRegBookmark/>}</span>
-            </Restaurant>
-            <Hashtags>
-                {b.bCategory ?<span>{b.bCategory}</span> :null}
-                {b.bLocation ?<span>{b.bLocation}</span> :null}
-                {b.hastag ? <span>{b.hastag}</span> :null}
-            </Hashtags>
-        </Box>)}
-    </Category>)
+        <div key = {b.key}isActive = {match !== null} >
+            <CategoryBox 
+            index = {b.key}
+            name = {b.name}
+            bCategory = {b.bCategory}
+            bLocation = {b.bLocation}
+            hastag = {b.hashtag}
+            />
+        </div>)}
+    </Category>    
+    </Wrap>
+    
+    
+    )
 }
 
 export default ByCategory;

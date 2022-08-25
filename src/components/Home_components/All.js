@@ -5,16 +5,16 @@ import { useMatch, useParams } from "react-router-dom";
 import data from "../api_components/Api.json"
 
 const Wrap = styled.div`
-    position: absolute ;
-    top: 390px;
     display:grid;
     grid-template-columns:1fr 1fr ;
-    width: 100%;
+    width: 95%;
+    margin: 10px auto;
     overflow-y:scroll;
     overflow-y:hidden;
+    height:100%;
 `
 const Box = styled.div`
-    margin:5px;
+    margin:10px;
     border: 1px solid #ECECEC;
     border-radius: 3px;
 `
