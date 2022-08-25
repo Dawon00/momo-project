@@ -1,5 +1,12 @@
 import {atom} from 'recoil';
 import {localStorageEffect} from './page/Profile';
+import { recoilPersist } from "recoil-persist";
+
+const {persistAtom} = recoilPersist({
+    key:"toDoLocal",
+    storage:localStorage,
+})
+
 
 export const locaCateState = atom({
     key: "locaCateState",
@@ -10,8 +17,15 @@ export const menuCateState = atom({
     key: "menuCateState",
     default: ""
 });
+
 export const userStoredList = atom({
     key: "userStoredList",
-    default: [],
-    effects: [localStorageEffect("user_list")],
+    default: "",
+    effects_UNSTABLE: [persistAtom],
 });
+
+export const bookmarkRes = atom({
+    key: "bookmarkRestaurant",
+    default: [],
+    effects_UNSTABLE: [persistAtom],
+})

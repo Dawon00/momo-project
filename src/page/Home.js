@@ -152,7 +152,7 @@ function Home(){
 
 
     return (
-    <div style={{width:"100%", minHeight:"100%",display:"flex", flexDirection:"column"}}>
+    <div style={{width:"100%", minHeight:"100vh",display:"flex", flexDirection:"column"}}>
         <Wrap>
         <SliderWrap>
             <Text>오늘은 이거 어때요?</Text>
