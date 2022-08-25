@@ -12,6 +12,6 @@ export const menuCateState = atom({
 });
 export const userStoredList = atom({
     key: "userStoredList",
-    default: [],
-    effects: [localStorageEffect("user_list")],
+    default: "",
+    effects_UNSTABLE: [persistAtom],
 });

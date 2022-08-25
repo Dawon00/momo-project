@@ -1,35 +1,31 @@
 import { useRecoilState} from "recoil";
-import { useEffect } from "react";
 import {userStoredList} from '../atom';
-import Footer from "../components/Home_components/Footer";
-import Header from "../components/Home_components/Header";
+import styled from "styled-components";
 
-export const localStorageEffect = (key) => ({setSelf, onSet}) => {
-    const savedValue = localStorage.getItem(key)
-    if (savedValue != null) {
-    //   setSelf(JSON.parse(savedValue));
-        localStorage.removeItem(key);
-    }
-    onSet((newValue, _, isReset) => {
-        const confirm = newValue.length === 0;
-        confirm ? localStorage.removeItem(key) : localStorage.setItem(key, JSON.stringify(newValue));
-    });
-  };
+const Wrap = styled.div`
+    overflow-x:hidden;
+    position: relative;
+    width: 95%;
+    margin: 0 auto;
+    top:80px;
+    height: 72vh;
+    bottom: 160px;
+`
 
 const Profile = ()=>{
- const [userList, setUserList] = useRecoilState(userStoredList);
-
-  useEffect(() => {
-    setUserList([
-      {
-        name: "Keane Sykes",
-      },
-    ]);
-  }, []);
-  console.log(userList);
+ const [userName, setUserName] = useRecoilState(userStoredList);
+  console.log(userName);
   return(
-    <div>
-    </div>
+    <Wrap>
+      성함을 입력해주세요 
+      <input
+      value ={userName}
+      onChange={(e)=>{
+        setUserName(e.target.value);
+      }
+      }
+      />
+    </Wrap>
     
   );
 };

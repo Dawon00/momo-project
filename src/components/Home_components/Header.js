@@ -91,8 +91,7 @@ const Profile = styled(Bookmark)`
 `
 
 function Header(){
-    // const [user,setUser] = useState("김주원");
-    const userName = useRecoilValue(userStoredList);
+    const name = useRecoilValue(userStoredList);
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm();
     const onValid = (data) => {
@@ -111,7 +110,6 @@ function Header(){
             <Col>
                 <Logo onClick = {()=>onClick()}>
                     <Link to ="/home/all">
-                    
                         <span>모현에서</span>
                         <span>모먹지</span>
                     </Link>
@@ -132,7 +130,7 @@ function Header(){
                 <Item>
                     <Welcome>
                         <span>반가워요,</span>
-                        {/* <span>{userName}</span> */}
+                        <span>{name}</span>
                         <span>님!</span>
                     </Welcome>
                 </Item>
