@@ -6,9 +6,11 @@ import styled,{css} from "styled-components";
 import { categoryState, locaCateState } from "../../atom";
 import ByCategory from "./ByCategory";
 
+const Wrap = styled.div`
+    margin:20px;
+    flex:1;
+`
 const Categories = styled(motion.ul)`
-    position: absolute ;
-    top:380px;
     display: flex ;
 `
 const Category = styled(motion.li)`
@@ -83,7 +85,7 @@ function Location(){
     }
     const cateMatch = useMatch(`home/location/${locaCategory}`);
     return (
-        <>
+        <Wrap>
             <Categories >
                 {categories.map(c => (
                     <Category 
@@ -103,7 +105,7 @@ function Location(){
             <Routes>
                 <Route path = "/:cate" element={<ByCategory category={category}/>}/>
             </Routes>
-        </>
+        </Wrap>
     )
 }
 

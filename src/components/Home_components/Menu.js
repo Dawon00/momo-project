@@ -5,9 +5,11 @@ import styled, { css } from "styled-components";
 import { categoryState, menuCateState } from "../../atom";
 import ByCategory from "./ByCategory";
 
+const Wrap = styled.div`
+    margin:20px;
+    flex:1;
+`
 const Categories = styled.ul`
-    position: absolute ;
-    top:380px;
     display: flex ;
 `
 const Category = styled.li`
@@ -88,7 +90,7 @@ function Menu(){
     
 
     return (
-        <>
+        <Wrap>
             <Categories>
                 {categories.map(c => (
                     <Category isActive = {cateMatch !== null} active = {menuCategory === c.name}> 
@@ -103,7 +105,7 @@ function Menu(){
             <Routes>
                 <Route path = "/:cate" element={<ByCategory category={category}/>}/>
             </Routes>
-        </>
+        </Wrap>
     )
 }
 

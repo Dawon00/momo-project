@@ -6,9 +6,6 @@ const Foot = styled.footer`
     height: 160px;
     padding-top: 10px;
     padding-top:10px;
-    position: absolute;
-    bottom: 0;
-    background-color: #140065;
     color: white;
 `
 const Col = styled.div`

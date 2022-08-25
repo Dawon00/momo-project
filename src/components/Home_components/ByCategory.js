@@ -4,9 +4,10 @@ import { useState } from "react";
 import { useMatch, useParams } from "react-router-dom";
 import data from "../api_components/Api.json"
 
+const Wrap = styled.div`
+    margin-top:20px;
+`
 const Category = styled.div`
-    position: absolute ;
-    top: 470px;
     display:grid;
     grid-template-columns:1fr 1fr ;
     width: 100%;
@@ -95,6 +96,7 @@ function ByCategory({category}){
     
     const categoryData = data.apiList.filter(d => (locaMatch ?d.bLocation :d.bCategory) === category)
     return (
+    <Wrap>
     <Category>
         {categoryData.map(b => 
         <Box key = {b.name} isActive = {match !== null} >
@@ -109,7 +111,11 @@ function ByCategory({category}){
                 {b.hastag ? <span>{b.hastag}</span> :null}
             </Hashtags>
         </Box>)}
-    </Category>)
+    </Category>    
+    </Wrap>
+    
+    
+    )
 }
 
 export default ByCategory;
