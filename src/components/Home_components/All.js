@@ -72,11 +72,9 @@ const categories = [
 
 function All({category}){
     const [click, setClick] = useState(false);
-    const [key, setKey] = useState(0);
 
-    const onClick = (b) => {
+    const onClick = () => {
         setClick(prev=> !prev);
-        setKey(b);
     }
     
     const categoryData = data.apiList
@@ -88,7 +86,7 @@ function All({category}){
             <Img></Img>
             <Restaurant>
                 <span>{b.name}</span>
-                <span onClick = {()=>onClick(b)}>{click&& key===b.name ? <FaBookmark/>:<FaRegBookmark/>}</span>
+                <span onClick = {()=>onClick(b)}>{click ? <FaBookmark/>:<FaRegBookmark/>}</span>
             </Restaurant>
             <Hashtags>
                 {b.bCategory ?<span>{b.bCategory}</span> :null}

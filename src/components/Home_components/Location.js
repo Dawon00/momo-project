@@ -89,7 +89,6 @@ function Location(){
             <Categories >
                 {categories.map(c => (
                     <Category 
-                    whilehover = {{scale: 1.5}} 
                     isActive = {cateMatch !== null} 
                     active = {locaCategory === c.name}
                     > 
