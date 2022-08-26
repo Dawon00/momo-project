@@ -5,6 +5,7 @@ import "./Detail.css";
 import Footer from "../components/Home_components/Footer";
 import { db } from ".././Firebase.js";
 import { collection, getDocs } from "firebase/firestore";
+import { useParams } from "react-router-dom";
 
 const { kakao } = window;
 
@@ -86,22 +87,28 @@ const Hashtags = styled.div`
 `;
 
 function Detail() {
-  const [data, setData] = useState([]);
+  //const [data, setData] = useState([]);
+  const { id } = useParams();
+  const jsonData = require("../components/api_components/Api.json");
+  let item = jsonData.find(function (x) {
+    return x.key === id;
+  });
+  console.log(item);
 
-  function getData() {
-    const dataCollectionRef = collection(db, "apiList");
-    getDocs(dataCollectionRef)
-      .then((response) => {
-        const newdata = response.docs.map((doc) => ({
-          data: doc.data(),
-          id: doc.id,
-        }));
-        setData(newdata);
-      })
-      .catch((error) => console.log(error.message));
-  }
+  //function getData() {
+  ////  const dataCollectionRef = collection(db, "apiList");
+  //  getDocs(dataCollectionRef)
+  //    .then((response) => {
+  //      const newdata = response.docs.map((doc) => ({
+  //        data: doc.data(),
+  //        id: doc.id,
+  //      }));
+  //      setData(newdata);
+  //    })
+  //    .catch((error) => console.log(error.message));
+  //}
   useEffect(() => {
-    getData();
+    //  getData();
 
     //kakaoMap
     const container = document.getElementById("myMap");
@@ -126,10 +133,6 @@ function Detail() {
     marker.setMap(map);
   }, []);
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   return (
     <AllWrap>
       <Wrap>
@@ -147,16 +150,7 @@ function Detail() {
           <Col>
             <Stack gap={3}>
               <div>
-                <Title>
-                  {data.map((doc) => {
-                    return (
-                      <div>
-                        {" "}
-                        <h1>{data.name}</h1>
-                      </div>
-                    );
-                  })}
-                </Title>
+                <Title>가게 이름</Title>
               </div>
               <div>가게 소개</div>
               <Location>가게 주소</Location>
