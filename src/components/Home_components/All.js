@@ -3,6 +3,7 @@ import {FaRegBookmark, FaBookmark} from 'react-icons/fa'
 import { useState } from "react";
 import { useMatch, useParams } from "react-router-dom";
 import data from "../api_components/Api.json"
+import CategoryBox from "./CategoryBox";
 
 const Wrap = styled.div`
     display:grid;
@@ -73,27 +74,21 @@ const categories = [
 function All({category}){
     const [click, setClick] = useState(false);
 
-    const onClick = () => {
-        setClick(prev=> !prev);
-    }
-    
     const categoryData = data.apiList
 
     return (
     <Wrap category = {category}>
         {categoryData.map(b => 
-        <Box key = {b.name}>
-            <Img></Img>
-            <Restaurant>
-                <span>{b.name}</span>
-                <span onClick = {()=>onClick(b)}>{click ? <FaBookmark/>:<FaRegBookmark/>}</span>
-            </Restaurant>
-            <Hashtags>
-                {b.bCategory ?<span>{b.bCategory}</span> :null}
-                {b.bLocation ?<span>{b.bLocation}</span> :null}
-                {b.hastag ? <span>{b.hastag}</span> :null}
-            </Hashtags>
-        </Box>)}
+        <div>
+            <CategoryBox 
+            index = {b.key}
+            name = {b.name}
+            bCategory = {b.bCategory}
+            bLocation = {b.bLocation}
+            hastag = {b.hashtag}
+            url = {b.photoUrl}
+            />
+        </div>)}
     </Wrap>)
 }
 

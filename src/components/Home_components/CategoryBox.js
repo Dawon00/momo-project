@@ -3,6 +3,7 @@ import styled from "styled-components"
 import {FaRegBookmark, FaBookmark} from 'react-icons/fa'
 import { useRecoilState } from "recoil"
 import { bookmarkRes } from "../../atom"
+import { useNavigate } from "react-router-dom"
 
 const Wrap = styled.div`
     margin:5px;
@@ -12,6 +13,8 @@ const Wrap = styled.div`
 const Img = styled.div`
     background-color: #F0EDFF ;
     height: 250px;
+    background-image: url(${(props) => props.url});
+    background-size: cover;
 `
 const Restaurant = styled.div`
     height: 50px;
@@ -41,17 +44,23 @@ const Hashtags = styled.div`
     }
 `
 
-function CategoryBox ({index,name,bCategory,bLocation,hastag}){
-    const [click, setClick] = useState(false);
-
-    const [bookmark, setBookmark] = useRecoilState(bookmarkRes);
+function CategoryBox ({index,name,bCategory,bLocation,hastag, url}){
+    const [bookmark, setBookmark] = useState([]);
+    const bool = bookmark.includes(index) ? true : false;
+    const [click, setClick] = useState(bool);
 
     const onClick = () => {
         setClick(prev=> !prev);
+
+        setBookmark(bookmark => click ?[...bookmark, index] : bookmark.filer(b => b !== index));
+    }
+    const navigate = useNavigate();
+    const toDetail = () => {
+        navigate(`/detail/${index}`)
     }
     return (
-        <Wrap>
-            <Img></Img>
+        <Wrap onClick = {toDetail}>
+            <Img url = {url}></Img>
             <Restaurant>
                 <span>{name}</span>
                 <span onClick = {onClick}>{click  ? <FaBookmark/>:<FaRegBookmark/>}</span>
