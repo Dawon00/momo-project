@@ -54,6 +54,8 @@ const Box = styled(motion.div)`
     background-color: #F0EDFF;
     border-radius: 20px ;
     margin:10px;
+    background-image:url(${props=>props.url}) ;
+    background-size: cover;
 `
 const Bar = styled(motion.div)`
     display: flex;
@@ -110,6 +112,8 @@ const rowVariants = {
       x: back ? 844 :  -844,
     }),
   };
+
+const img = ["https://firebasestorage.googleapis.com/v0/b/momo-project-512b0.appspot.com/o/event1.png?alt=media&token=ad451579-a1ca-4cbd-8a39-90da1a23f56f", "https://firebasestorage.googleapis.com/v0/b/momo-project-512b0.appspot.com/o/event2.png?alt=media&token=e8f4c361-6f58-48be-bd9d-4ebe2b4dd705"]
 
 const offset = 2;
 function Home(){
@@ -188,8 +192,7 @@ function Home(){
                 >
                     {[1,2,3,4,5,6].slice(offset * index, offset * index + offset)
                     .map(i =>
-                    <Box >
-                        뭔가를 넣을겁니다{i}
+                    <Box url = {i%2===0 ? img[0]: img[1]}>
                     </Box>)}
                 </Row>
                 </RowWrap>
