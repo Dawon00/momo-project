@@ -18,6 +18,7 @@ const SearchDiv = styled.div`
     overflow-y:hidden;
 `
 const SearchText = styled.p `
+margin:20px;
 
 `
 const SearchResult = styled.div`
