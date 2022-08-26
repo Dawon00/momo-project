@@ -2,11 +2,13 @@ import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import { Card, Col, Row, Stack, Container } from "react-bootstrap";
 import "./Detail.css";
+import Footer from "../components/Home_components/Footer";
+
 const { kakao } = window;
 
 const AllWrap = styled.div`
   height: 100%;
-`
+`;
 const Wrap = styled.div`
   position: relative;
   width: 95%;
@@ -16,6 +18,7 @@ const Wrap = styled.div`
 
 const MenuContainer = styled.div`
   background: white;
+  margin-bottom: 150px;
 `;
 const Box = styled.div`
   margin: 5px;
@@ -52,12 +55,21 @@ const Location = styled.h3`
   font-weight: bold;
 `;
 
+const MenuTitle = styled.h1`
+  font-weight: bold;
+  font-size: large;
+  margin-left: 10px;
+  margin-bottom: 20px;
+`;
+
 const MapCard = styled.div`
   padding: 1rem;
-  margin: 1.75rem;
+  margin: 0.5rem;
   border-radius: 4px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   color: white;
+  margin-bottom: 50px;
+  margin-top: 30px;
 `;
 
 const Hashtags = styled.div`
@@ -131,7 +143,7 @@ function Detail() {
 
         <MenuContainer>
           <div>
-            <h1>대표 메뉴</h1>
+            <MenuTitle>대표 메뉴</MenuTitle>
           </div>
           <Row xs={1} md={2} className="g-4">
             {Array.from({ length: 4 }).map((_, idx) => (
@@ -152,6 +164,7 @@ function Detail() {
           </Row>
         </MenuContainer>
       </Wrap>
+      <Footer />
     </AllWrap>
   );
 }
