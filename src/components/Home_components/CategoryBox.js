@@ -26,6 +26,10 @@ const Restaurant = styled.div`
     span:first-child{
         font-weight: bold ;
         font-size:20px;
+
+        &:hover {
+            color: ${props => props.theme.pointColor}
+        }
     }
     span:last-child {
         cursor:pointer;
@@ -45,25 +49,25 @@ const Hashtags = styled.div`
 `
 
 function CategoryBox ({index,name,bCategory,bLocation,hastag, url}){
-    const [bookmark, setBookmark] = useState([]);
-    const bool = bookmark.includes(index) ? true : false;
+    const [bookmark, setBookmark] = useRecoilState(bookmarkRes);
+
+    const bool = bookmark.includes(name);
     const [click, setClick] = useState(bool);
 
     const onClick = () => {
         setClick(prev=> !prev);
-
-        setBookmark(bookmark => click ?[...bookmark, index] : bookmark.filer(b => b !== index));
+        setBookmark( (prev) => click ? prev.filter((b) => b!== name) : [name,...prev ])
     }
     const navigate = useNavigate();
     const toDetail = () => {
         navigate(`/detail/${index}`)
     }
     return (
-        <Wrap onClick = {toDetail}>
+        <Wrap >
             <Img url = {url}></Img>
             <Restaurant>
-                <span>{name}</span>
-                <span onClick = {onClick}>{click  ? <FaBookmark/>:<FaRegBookmark/>}</span>
+                <span onClick = {toDetail}>{name}</span>
+                <span onClick = {onClick}>{click  ?<FaBookmark/> :<FaRegBookmark/>}</span>
             </Restaurant>
             <Hashtags>
                 {bCategory ?<span>{bCategory}</span> :null}
