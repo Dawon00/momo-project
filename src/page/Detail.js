@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Card, Col, Row, Stack, Container } from "react-bootstrap";
 import "./Detail.css";
 import Footer from "../components/Home_components/Footer";
+import { db } from ".././Firebase.js";
+import { collection, getDocs } from "firebase/firestore";
 
 const { kakao } = window;
 
@@ -84,8 +86,24 @@ const Hashtags = styled.div`
 `;
 
 function Detail() {
-  //kakaoMapScript
+  const [data, setData] = useState([]);
+
+  function getData() {
+    const dataCollectionRef = collection(db, "apiList");
+    getDocs(dataCollectionRef)
+      .then((response) => {
+        const newdata = response.docs.map((doc) => ({
+          data: doc.data(),
+          id: doc.id,
+        }));
+        setData(newdata);
+      })
+      .catch((error) => console.log(error.message));
+  }
   useEffect(() => {
+    getData();
+
+    //kakaoMap
     const container = document.getElementById("myMap");
     const options = {
       center: new kakao.maps.LatLng(37.62197524055062, 127.16017523675508),
@@ -108,6 +126,10 @@ function Detail() {
     marker.setMap(map);
   }, []);
 
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   return (
     <AllWrap>
       <Wrap>
@@ -124,7 +146,18 @@ function Detail() {
           </Col>
           <Col>
             <Stack gap={3}>
-              <Title>가게 이름</Title>
+              <div>
+                <Title>
+                  {data.map((doc) => {
+                    return (
+                      <div>
+                        {" "}
+                        <h1>{data.name}</h1>
+                      </div>
+                    );
+                  })}
+                </Title>
+              </div>
               <div>가게 소개</div>
               <Location>가게 주소</Location>
             </Stack>
