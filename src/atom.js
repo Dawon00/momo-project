@@ -18,13 +18,13 @@ export const menuCateState = atom({
 });
 
 export const userStoredList = atom({
-  key: "userStoredList",
-  default: "",
-  effects_UNSTABLE: [persistAtom],
+    key: "userStoredList",
+    default: "",
+    effects_UNSTABLE: [persistAtom]
 });
 
 export const bookmarkRes = atom({
-  key: "bookmarkRes",
-  default: "",
+  key: "bookmarkRestaurant",
+  default: [],
   effects_UNSTABLE: [persistAtom],
-});
+})
