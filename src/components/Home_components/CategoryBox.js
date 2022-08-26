@@ -3,6 +3,7 @@ import styled from "styled-components"
 import {FaRegBookmark, FaBookmark} from 'react-icons/fa'
 import { useRecoilState } from "recoil"
 import { bookmarkRes } from "../../atom"
+import { useNavigate } from "react-router-dom"
 
 const Wrap = styled.div`
     margin:5px;
@@ -53,8 +54,12 @@ function CategoryBox ({index,name,bCategory,bLocation,hastag, url}){
 
         setBookmark(bookmark => click ?[...bookmark, index] : bookmark.filer(b => b !== index));
     }
+    const navigate = useNavigate();
+    const toDetail = () => {
+        navigate(`/detail/${index}`)
+    }
     return (
-        <Wrap>
+        <Wrap onClick = {toDetail}>
             <Img url = {url}></Img>
             <Restaurant>
                 <span>{name}</span>
