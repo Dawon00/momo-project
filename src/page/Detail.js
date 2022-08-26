@@ -17,6 +17,7 @@ const Wrap = styled.div`
   width: 95%;
   margin: 0 auto;
   top: 80px;
+  min-height: 100vh;
 `;
 
 const MenuContainer = styled.div`
@@ -31,6 +32,8 @@ const Box = styled.div`
 const Img = styled.div`
   background-color: #f0edff;
   height: 250px;
+  background-image: url(${(props) => props.url});
+  background-size: cover;
 `;
 const Title = styled.h1`
   font-size: 1.5em;
@@ -90,9 +93,7 @@ function Detail() {
   //const [data, setData] = useState([]);
   const { id } = useParams();
   const jsonData = require("../components/api_components/Api.json");
-  let item = jsonData.find(function (x) {
-    return x.key === id;
-  });
+  let item = jsonData.apiList.filter((x) => x.key === Number(id));
   console.log(item);
 
   //function getData() {
@@ -108,20 +109,18 @@ function Detail() {
   //    .catch((error) => console.log(error.message));
   //}
   useEffect(() => {
-    //  getData();
-
     //kakaoMap
     const container = document.getElementById("myMap");
     const options = {
-      center: new kakao.maps.LatLng(37.62197524055062, 127.16017523675508),
+      center: new kakao.maps.LatLng(item[0].Latitude, item[0].Longitude),
       level: 3,
     };
     const map = new kakao.maps.Map(container, options);
 
     //마커가 표시 될 위치
     let markerPosition = new kakao.maps.LatLng(
-      37.62197524055062,
-      127.16017523675508
+      item[0].Latitude,
+      item[0].Longitude
     );
 
     // 마커를 생성
@@ -139,21 +138,24 @@ function Detail() {
         <Row>
           <Col>
             <Box>
-              <Img></Img>
+              <Img url={item[0].photoUrl}></Img>
               <Restaurant>
-                <span>name</span>
+                <span>{item[0].name}</span>
                 <span></span>
               </Restaurant>
-              <Hashtags></Hashtags>
+              <Hashtags>
+                {item[0].bCategory ? <span>{item[0].bCategory}</span> : null}
+                {item[0].bLocation ? <span>{item[0].bLocation}</span> : null}
+                {item[0].hastag ? <span>{item[0].hastag}</span> : null}
+              </Hashtags>
             </Box>
           </Col>
           <Col>
             <Stack gap={3}>
               <div>
-                <Title>가게 이름</Title>
+                <Title>{item[0].name}</Title>
               </div>
-              <div>가게 소개</div>
-              <Location>가게 주소</Location>
+              <Location>{item[0].sLocation}</Location>
             </Stack>
           </Col>
         </Row>
@@ -168,7 +170,7 @@ function Detail() {
           ></div>
         </MapCard>
 
-        <MenuContainer>
+        {/* <MenuContainer>
           <div>
             <MenuTitle>대표 메뉴</MenuTitle>
           </div>
@@ -189,7 +191,7 @@ function Detail() {
               </Col>
             ))}
           </Row>
-        </MenuContainer>
+        </MenuContainer> */}
       </Wrap>
       <Footer />
     </AllWrap>
