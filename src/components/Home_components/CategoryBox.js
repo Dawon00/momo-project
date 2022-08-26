@@ -8,13 +8,14 @@ import { useNavigate } from "react-router-dom"
 const Wrap = styled.div`
     margin:5px;
     border: 1px solid #ECECEC;
-    border-radius: 3px;
+    border-radius: 10px;
 `
 const Img = styled.div`
     background-color: #F0EDFF ;
     height: 250px;
     background-image: url(${(props) => props.url});
     background-size: cover;
+    border-radius: 10px 10px 0 0;
 `
 const Restaurant = styled.div`
     height: 50px;
