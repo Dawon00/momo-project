@@ -98,13 +98,14 @@ function ByCategory({category}){
     <Wrap>
     <Category>
         {categoryData.map(b => 
-        <div key = {b.key}isActive = {match !== null} >
+        <div isActive = {match !== null} >
             <CategoryBox 
             index = {b.key}
             name = {b.name}
             bCategory = {b.bCategory}
             bLocation = {b.bLocation}
             hastag = {b.hashtag}
+            url = {b.photoUrl}
             />
         </div>)}
     </Category>    

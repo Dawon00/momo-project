@@ -23,3 +23,9 @@ export const userStoredList = atom({
     default: "",
     effects_UNSTABLE: [persistAtom]
 });
+
+export const bookmarkRes = atom({
+    key: "bookmarkResaurant",
+    default: [],
+    effects_UNSTABLE: [persistAtom]
+});
