@@ -12,7 +12,7 @@ const Wrap = styled.div`
 const Img = styled.div`
     background-color: #F0EDFF ;
     height: 250px;
-    background-image: url(${(props) => props.url})
+    background-image: url(${(props) => props.url});
     background-size: cover;
 `
 const Restaurant = styled.div`
@@ -53,7 +53,6 @@ function CategoryBox ({index,name,bCategory,bLocation,hastag, url}){
 
         setBookmark(bookmark => click ?[...bookmark, index] : bookmark.filer(b => b !== index));
     }
-    useEffect(()=>{ console.log(bookmark)}, [bookmark])
     return (
         <Wrap>
             <Img url = {url}></Img>

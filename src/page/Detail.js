@@ -2,11 +2,15 @@ import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import { Card, Col, Row, Stack, Container } from "react-bootstrap";
 import "./Detail.css";
+import Footer from "../components/Home_components/Footer";
+import { db } from ".././Firebase.js";
+import { collection, getDocs } from "firebase/firestore";
+
 const { kakao } = window;
 
 const AllWrap = styled.div`
   height: 100%;
-`
+`;
 const Wrap = styled.div`
   position: relative;
   width: 95%;
@@ -16,6 +20,7 @@ const Wrap = styled.div`
 
 const MenuContainer = styled.div`
   background: white;
+  margin-bottom: 150px;
 `;
 const Box = styled.div`
   margin: 5px;
@@ -52,12 +57,21 @@ const Location = styled.h3`
   font-weight: bold;
 `;
 
+const MenuTitle = styled.h1`
+  font-weight: bold;
+  font-size: large;
+  margin-left: 10px;
+  margin-bottom: 20px;
+`;
+
 const MapCard = styled.div`
   padding: 1rem;
-  margin: 1.75rem;
+  margin: 0.5rem;
   border-radius: 4px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   color: white;
+  margin-bottom: 50px;
+  margin-top: 30px;
 `;
 
 const Hashtags = styled.div`
@@ -72,8 +86,24 @@ const Hashtags = styled.div`
 `;
 
 function Detail() {
-  //kakaoMapScript
+  const [data, setData] = useState([]);
+
+  function getData() {
+    const dataCollectionRef = collection(db, "apiList");
+    getDocs(dataCollectionRef)
+      .then((response) => {
+        const newdata = response.docs.map((doc) => ({
+          data: doc.data(),
+          id: doc.id,
+        }));
+        setData(newdata);
+      })
+      .catch((error) => console.log(error.message));
+  }
   useEffect(() => {
+    getData();
+
+    //kakaoMap
     const container = document.getElementById("myMap");
     const options = {
       center: new kakao.maps.LatLng(37.62197524055062, 127.16017523675508),
@@ -96,6 +126,10 @@ function Detail() {
     marker.setMap(map);
   }, []);
 
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   return (
     <AllWrap>
       <Wrap>
@@ -112,7 +146,18 @@ function Detail() {
           </Col>
           <Col>
             <Stack gap={3}>
-              <Title>가게 이름</Title>
+              <div>
+                <Title>
+                  {data.map((doc) => {
+                    return (
+                      <div>
+                        {" "}
+                        <h1>{data.name}</h1>
+                      </div>
+                    );
+                  })}
+                </Title>
+              </div>
               <div>가게 소개</div>
               <Location>가게 주소</Location>
             </Stack>
@@ -131,7 +176,7 @@ function Detail() {
 
         <MenuContainer>
           <div>
-            <h1>대표 메뉴</h1>
+            <MenuTitle>대표 메뉴</MenuTitle>
           </div>
           <Row xs={1} md={2} className="g-4">
             {Array.from({ length: 4 }).map((_, idx) => (
@@ -152,6 +197,7 @@ function Detail() {
           </Row>
         </MenuContainer>
       </Wrap>
+      <Footer />
     </AllWrap>
   );
 }

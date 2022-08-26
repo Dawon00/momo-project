@@ -115,11 +115,12 @@ function Header(){
                     </Link>
                 </Logo>
                 <Search
-                onSubmit= {handleSubmit(onValid)}
-                >
+                onSubmit= {handleSubmit(onValid)}>
                     <Input 
                         {...register("keyword", { required: true, minLength: 2 })}
-                        placeholder='search'/>
+                        placeholder='search'
+                     />
+
                     <button>
                         🔍︎
                     </button>    
