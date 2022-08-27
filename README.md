@@ -1,5 +1,5 @@
 # MoMo Project
-https://momo-project-512b0.web.app/
+https://momo-project-512b0.web.app/home/all
 <br/>한국외대 글로벌캠퍼스 주변 음식점/카페 정보를 제공하는 서비스
 
 ## 프로젝트 개요
