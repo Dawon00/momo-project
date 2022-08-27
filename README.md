@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+# MoMo Project
+https://momo-project-512b0.web.app/
+<br/>한국외대 글로벌캠퍼스 주변 음식점/카페 정보를 제공하는 서비스
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 프로젝트 개요
+학교 커뮤니티인 ‘에브리타임’의 맛집 게시판을 이용해보면 앱 자체의 특성상 각각의 게시물을 통해 정보에 접근하다보니 가시성이 떨어진다고 판단되었다. 따라서, 여러 개의 음식점 정보를 한 눈에 파악할 수 있는 프로그램을 제작하고자 하였다.
 
-## Available Scripts
+* 개발기간: 2022.08.13 ~ 2022.08.27
+* 개발인원: 총 3명
 
-In the project directory, you can run:
+|front|front|front|
+|:---:|:---:|:---:|
+|![image](https://user-images.githubusercontent.com/71630722/187007863-1df7c48c-7086-4d4c-9d6a-b532da4cb995.png)|![image](https://user-images.githubusercontent.com/71630722/187007872-a7f115e1-fd2f-4b8c-88c0-ab5ea1a9751e.png)|![image](https://user-images.githubusercontent.com/71630722/187007882-2cf2b12f-a824-4ee1-b073-2d713326961b.png)|
+|[김민서](https://github.com/kimwest00)|[서다원](https://github.com/Dawon00)|[조주희](https://github.com/juhui88)|
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 프로젝트 기능
+* 검색 기능 : 음식점 상호명에 따른 검색
+* 지도 : 지도를 통한 음식점의 정확한 위치 제공
+* 맛집 리스트 관리 : 검색을 하지 않고도 카테고리별로 음식점 분리 
+* 스크랩 기능 : 자신이 스크랩한 음식점들의 정보를 모아 제공
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 사용 기술
+* Flutter
+* Firebase
