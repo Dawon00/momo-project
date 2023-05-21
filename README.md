@@ -23,5 +23,5 @@ https://momo-project-512b0.web.app/home/all
 
 
 ## 사용 기술
-* Flutter
+* React
 * Firebase
